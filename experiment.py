@@ -33,10 +33,10 @@ for (k, v) in settings.items(): print(v, '\t',  k)
 # add the settings to local environment
 # WARNING: at this point a lot of variables appear
 locals().update(settings)
-json.dump(settings, open('./experiments/settings/' + identifier + '.txt', 'w'), indent=0)
+json.dump(settings, open('RGAN/experiments/settings/' + identifier + '.txt', 'w'), indent=0)
 
 if not data == 'load':
-    data_path = './experiments/data/' + identifier + '.data.npy'
+    data_path = 'RGAN/experiments/data/' + identifier + '.data.npy'
     np.save(data_path, {'samples': samples, 'pdf': pdf, 'labels': labels})
     print('Saved training data to', data_path)
 
@@ -150,10 +150,10 @@ else:
 
 # for dp
 target_eps = [0.125, 0.25, 0.5, 1, 2, 4, 8]
-dp_trace = open('./experiments/traces/' + identifier + '.dptrace.txt', 'w')
+dp_trace = open('RGAN/experiments/traces/' + identifier + '.dptrace.txt', 'w')
 dp_trace.write('epoch ' + ' eps' .join(map(str, target_eps)) + '\n')
 
-trace = open('./experiments/traces/' + identifier + '.trace.txt', 'w')
+trace = open('RGAN/experiments/traces/' + identifier + '.trace.txt', 'w')
 trace.write('epoch time D_loss G_loss mmd2 that pdf real_pdf\n')
 
 # --- train --- #
