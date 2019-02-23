@@ -306,7 +306,7 @@ def mnist(randomize=False):
         # scale from -1 to 1
         train[:, 1:] = 2*train[:, 1:] - 1
         # save to the npy
-        np.save('./data/mnist_train.npy', train)
+        np.save('RGAN/experiments/data/mnist_train.npy', train)
     # the first column is labels, kill them
     labels = train[:, 0]
     samples = train[:, 1:]
