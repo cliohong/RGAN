@@ -300,7 +300,7 @@ def mnist(randomize=False):
     except IOError:
         print('Failed to load MNIST data from .npy, loading from csv')
         # read from the csv
-        train = np.loadtxt(open('sample_data/mnist_train_small.csv.csv', 'r'), delimiter=',')
+        train = np.loadtxt(open('sample_data/mnist_train_small.csv', 'r'), delimiter=',')
         # scale samples from 0 to 1
         train[:, 1:] /= 255
         # scale from -1 to 1
