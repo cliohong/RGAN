@@ -541,8 +541,8 @@ def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
 #     fig.suptitle(idx)
 #     fig.suptitle(idx)
 #     fig.subplots_adjust(hspace = 0.15)
-#     plt.savefig("./experiments/plots/image_at_epoch_{:04d}.png".format(idx))
-    plt.savefig("./experiments/plots/" + identifier + "_epoch" + str(idx).zfill(4) + ".png")
+    plt.savefig('RGAN/experiments/plots/image_at_epoch_{:04d}.png'.format(idx))
+#     fig.savefig("RGAN/experiments/plots/" + identifier + "_epoch" + str(idx).zfill(4) + ".png")
     plt.clf()
     plt.close()
     return
