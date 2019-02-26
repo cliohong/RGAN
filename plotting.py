@@ -28,7 +28,7 @@ def visualise_at_epoch(vis_sample, data, predict_labels, one_hot, epoch,
             labs = labels
             samps = vis_sample
         if multivariate_mnist:
-            save_mnist_plot_sample(samps.reshape(-1, seq_length**2, 1), epoch, identifier, n_samples=6, labels=labs)
+            save_mnist_plot_sample(samps.reshape(-1, seq_length**2, 1), epoch, identifier, n_samples=16, labels=labs)
         else:
             save_mnist_plot_sample(samps, epoch, identifier, n_samples=16, labels=labs)
     elif 'eICU' in data:
