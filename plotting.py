@@ -30,7 +30,7 @@ def visualise_at_epoch(vis_sample, data, predict_labels, one_hot, epoch,
         if multivariate_mnist:
             save_mnist_plot_sample(samps.reshape(-1, seq_length**2, 1), epoch, identifier, n_samples=6, labels=labs)
         else:
-            save_mnist_plot_sample(samps, epoch, identifier, n_samples=6, labels=labs)
+            save_mnist_plot_sample(samps, epoch, identifier, n_samples=16, labels=labs)
     elif 'eICU' in data:
         vis_eICU_patients_downsampled(vis_sample[:6, :, :],
                 resample_rate_in_min,
@@ -450,8 +450,8 @@ def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
     assert n_samples % 2 == 0
     img_size = int(np.sqrt(samples.shape[1]))
 
-    nrow = int(n_samples/2)
-    ncol = 2
+    nrow = int(n_samples/4)
+    ncol = 4
     fig, axarr = plt.subplots(nrow, ncol, sharex=True, figsize=(8, 8))
     for m in range(nrow):
         # first column
