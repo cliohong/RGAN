@@ -28,10 +28,10 @@ def visualise_at_epoch(vis_sample, data, predict_labels, one_hot, epoch,
             labs = labels
             samps = vis_sample
         if multivariate_mnist:
-            save_mnist_plot_sample(samps.reshape(-1, seq_length**2, 1), epoch, identifier, n_samples=16, labels=labs)
+            save_mnist_plot_sample(samps.reshape(-1, seq_length**2, 1), epoch, identifier, n_samples=6, labels=labs)
             print("seq:",seq_length)
         else:
-            save_mnist_plot_sample(samps, epoch, identifier, n_samples=16, labels=labs)
+            save_mnist_plot_sample(samps, epoch, identifier, n_samples=6, labels=labs)
     elif 'eICU' in data:
         vis_eICU_patients_downsampled(vis_sample[:6, :, :],
                 resample_rate_in_min,
@@ -433,14 +433,79 @@ def vis_eICU_patients(patients, upto=None, identifier=None):
     plt.close()
     return True
 
+# def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
+#     """
+#     Generates a grid showing mnist digits.
+
+#     """
+#     print(samples.shape[0])
+        
+# #     assert n_samples <= samples.shape[0]
+#     if not labels is None:
+#         assert n_samples <= len(labels)
+#         if len(labels.shape) > 1 and not labels.shape[1] == 1:
+#             # one-hot
+#             label_titles = np.argmax(labels, axis=1)
+#         else:
+#             label_titles = labels
+#     else:
+#         label_titles = ['NA']*n_samples
+#     assert n_samples % 2 == 0
+#     img_size = int(np.sqrt(samples.shape[1]))
+
+#     nrow = int(n_samples/4)
+#     ncol = 4
+#     fig, axs = plt.subplots(nrow, ncol, sharex=True, figsize=(8, 8))
+    
+# #     fig, axarr = plt.subplots(nrow, ncol, sharex=True, figsize=(8, 8))
+#     for m in range(nrow):
+        
+#         for n in range(ncol):
+#                 indexs = np.random.random_integers(5)
+# #                 sample = samples[nrow + m, :, 0]
+#                 sample = samples[indexs, :, 0]
+                
+# #         # first column
+# #                 sample = samples[m, :, 0]
+#                 axs[m, n].imshow(sample.reshape([img_size,img_size]), cmap='gray')
+#                 axs[m, n].set_title(str(label_titles[m]))
+#                 axs[m,n].axis('off')
+        
+                
+#         # second column
+# #         sample = samples[nrow + m, :, 0]
+# #         axarr[m, 1].imshow(sample.reshape([img_size,img_size]), cmap='gray')
+# #         axarr[m, 1].set_title(str(label_titles[m + nrow]))
+#     fig.suptitle(idx)
+#     fig.suptitle(idx)
+#     fig.subplots_adjust(hspace = 0.15)
+#     fig.savefig("RGAN/experiments/plots/" + identifier + "_epoch" + str(idx).zfill(4) + ".png")
+#     plt.clf()
+#     plt.close()
+#     return
+
+
+# def generate_and_save_images(model, epoch, test_input):
+#   # Notice `training` is set to False. 
+#   # This is so all layers run in inference mode (batchnorm).
+#   predictions = model(test_input, training=False)
+# 
+#   fig = plt.figure(figsize=(4,4))
+  
+#   for i in range(predictions.shape[0]):
+#       plt.subplot(4, 4, i+1)
+#       plt.imshow(predictions[i, :, :, 0] * 127.5 + 127.5, cmap='gray')
+#       plt.axis('off')
+        
+#   plt.savefig('image_at_epoch_{:04d}.png'.format(epoch))
+#   plt.show()
+        
+
 def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
     """
     Generates a grid showing mnist digits.
-
     """
-    print(samples.shape[0])
-        
-#     assert n_samples <= samples.shape[0]
+    assert n_samples <= samples.shape[0]
     if not labels is None:
         assert n_samples <= len(labels)
         if len(labels.shape) > 1 and not labels.shape[1] == 1:
@@ -453,36 +518,35 @@ def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
     assert n_samples % 2 == 0
     img_size = int(np.sqrt(samples.shape[1]))
 
-    nrow = int(n_samples/4)
-    ncol = 4
-    fig, axs = plt.subplots(nrow, ncol, sharex=True, figsize=(8, 8))
-    
+    nrow = 4 #int(n_samples/2)
+    ncol = 4 # 2 
+        
+       
+    for i in range(samples.shape[0]):
+        plt.subplot(nrow, ncol, i+1)
+        sample = samples[i, :, 0]
+        plt.imshow(sample.reshape([img_size,img_size]), cmap='gray')
+        plt.axis('off')
+
 #     fig, axarr = plt.subplots(nrow, ncol, sharex=True, figsize=(8, 8))
-    for m in range(nrow):
-        
-        for n in range(ncol):
-                indexs = np.random.random_integers(5)
-#                 sample = samples[nrow + m, :, 0]
-                sample = samples[indexs, :, 0]
-                
+#     for m in range(nrow):
 #         # first column
-#                 sample = samples[m, :, 0]
-                axs[m, n].imshow(sample.reshape([img_size,img_size]), cmap='gray')
-                axs[m, n].set_title(str(label_titles[m]))
-                axs[m,n].axis('off')
-        
-                
-        # second column
+#         sample = samples[m, :, 0]
+#         axarr[m, 0].imshow(sample.reshape([img_size,img_size]), cmap='gray')
+#         axarr[m, 0].set_title(str(label_titles[m]))
+#         # second column
 #         sample = samples[nrow + m, :, 0]
 #         axarr[m, 1].imshow(sample.reshape([img_size,img_size]), cmap='gray')
 #         axarr[m, 1].set_title(str(label_titles[m + nrow]))
-    fig.suptitle(idx)
-    fig.suptitle(idx)
-    fig.subplots_adjust(hspace = 0.15)
-    fig.savefig("RGAN/experiments/plots/" + identifier + "_epoch" + str(idx).zfill(4) + ".png")
+#     fig.suptitle(idx)
+#     fig.suptitle(idx)
+#     fig.subplots_adjust(hspace = 0.15)
+    plt.savefig('./experiments/plots/image_at_epoch_{:04d}.png'.format(idx))
+#     fig.savefig("./experiments/plots/" + identifier + "_epoch" + str(idx).zfill(4) + ".png")
     plt.clf()
     plt.close()
     return
+
 
 def visualise_latent(Z, identifier):
     """
@@ -639,7 +703,7 @@ def view_mnist_eval(identifier, train_X, train_Y, synth_X, synth_Y, test_X, test
             plt.title('%i' % prediction)
     plt.tight_layout()
     plt.title(identifier)
-    plt.savefig('RGAN/experiments/tstr/' + identifier + '_preds.png')
+    plt.savefig('RGAN/experiments/traces/' + identifier + '_preds.png')
     return True
 
 def view_marginals_raw(data, label=''):
