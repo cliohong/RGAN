@@ -29,7 +29,6 @@ def visualise_at_epoch(vis_sample, data, predict_labels, one_hot, epoch,
             samps = vis_sample
         if multivariate_mnist:
             save_mnist_plot_sample(samps.reshape(-1, seq_length**2, 1), epoch, identifier, n_samples=6, labels=labs)
-            print("seq:",seq_length)
         else:
             save_mnist_plot_sample(samps, epoch, identifier, n_samples=6, labels=labs)
     elif 'eICU' in data:
@@ -484,21 +483,6 @@ def vis_eICU_patients(patients, upto=None, identifier=None):
 #     plt.close()
 #     return
 
-
-# def generate_and_save_images(model, epoch, test_input):
-#   # Notice `training` is set to False. 
-#   # This is so all layers run in inference mode (batchnorm).
-#   predictions = model(test_input, training=False)
-# 
-#   fig = plt.figure(figsize=(4,4))
-  
-#   for i in range(predictions.shape[0]):
-#       plt.subplot(4, 4, i+1)
-#       plt.imshow(predictions[i, :, :, 0] * 127.5 + 127.5, cmap='gray')
-#       plt.axis('off')
-        
-#   plt.savefig('image_at_epoch_{:04d}.png'.format(epoch))
-#   plt.show()
         
 
 def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
