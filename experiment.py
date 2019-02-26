@@ -138,7 +138,7 @@ if data == 'mnist':
         labs = None
         samps = vis_real
     if multivariate_mnist:
-        plotting.save_mnist_plot_sample(samps.reshape(-1, seq_length**2, 1), 0, identifier + '_real', n_samples=6, labels=labs)
+        plotting.save_mnist_plot_sample(samps.reshape(-1, seq_length**2, 1), 0, identifier + '_real', n_samples=16, labels=labs)
     else:
         plotting.save_mnist_plot_sample(samps, 0, identifier + '_real', n_samples=16, labels=labs)
 elif 'eICU' in data:
