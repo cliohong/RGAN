@@ -432,8 +432,7 @@ def vis_eICU_patients(patients, upto=None, identifier=None):
     plt.close()
     return True
 
-def 
-(samples, idx, identifier, n_samples, labels=None):
+def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
     """
     Generates a grid showing mnist digits.
 
