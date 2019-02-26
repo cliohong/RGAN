@@ -522,12 +522,12 @@ def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
     ncol = 4 # 2 
         
     
-    for i in range(4):
-        indexs = np.random.random_integers(5)
+    for i in range(16):
+        indexs = np.random.random_integers(n_samples)
         plt.subplot(nrow, ncol, i+1)
         sample = samples[indexs, :, 0]
-        plt.imshow(sample.reshape([img_size,img_size]), cmap='gray')
-        plt.axis('off')
+    plt.imshow(sample.reshape([img_size,img_size]), cmap='gray')
+    plt.axis('off')
 
 #     fig, axarr = plt.subplots(nrow, ncol, sharex=True, figsize=(8, 8))
 #     for m in range(nrow):
