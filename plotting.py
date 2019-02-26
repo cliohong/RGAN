@@ -440,7 +440,7 @@ def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
     """
     print(samples.shape[0])
         
-    assert n_samples <= samples.shape[0]
+#     assert n_samples <= samples.shape[0]
     if not labels is None:
         assert n_samples <= len(labels)
         if len(labels.shape) > 1 and not labels.shape[1] == 1:
