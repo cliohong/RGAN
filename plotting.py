@@ -461,7 +461,7 @@ def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
     for m in range(nrow):
         
         for n in range(ncol):
-                indexs = np.random.random_integers(6)
+                indexs = np.random.random_integers(5)
 #                 sample = samples[nrow + m, :, 0]
                 sample = samples[indexs, :, 0]
                 
