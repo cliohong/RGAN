@@ -521,10 +521,11 @@ def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
     nrow = 4 #int(n_samples/2)
     ncol = 4 # 2 
         
-       
-    for i in range(samples.shape[0]):
+    
+    for i in range(4):
+        indexs = np.random.random_integers(5)
         plt.subplot(nrow, ncol, i+1)
-        sample = samples[i, :, 0]
+        sample = samples[indexs, :, 0]
         plt.imshow(sample.reshape([img_size,img_size]), cmap='gray')
         plt.axis('off')
 
