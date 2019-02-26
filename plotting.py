@@ -432,7 +432,8 @@ def vis_eICU_patients(patients, upto=None, identifier=None):
     plt.close()
     return True
 
-def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
+def 
+(samples, idx, identifier, n_samples, labels=None):
     """
     Generates a grid showing mnist digits.
 
@@ -452,16 +453,26 @@ def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
 
     nrow = int(n_samples/4)
     ncol = 4
-    fig, axarr = plt.subplots(nrow, ncol, sharex=True, figsize=(8, 8))
-    for m in range(nrow):
-        # first column
-        sample = samples[m, :, 0]
-        axarr[m, 0].imshow(sample.reshape([img_size,img_size]), cmap='gray')
-        axarr[m, 0].set_title(str(label_titles[m]))
+    fig, axs = plt.subplots(nrow, ncol, sharex=True, figsize=(8, 8))
+    indexs = 0
+#     fig, axarr = plt.subplots(nrow, ncol, sharex=True, figsize=(8, 8))
+    for n in range(ncol):
+       
+        for m in range(nrow):
+#                 sample = samples[nrow + m, :, 0]
+                sample = samples[indexs, :, 0]
+                indexs+=1
+#         # first column
+#                 sample = samples[m, :, 0]
+                axs[m, n].imshow(sample.reshape([img_size,img_size]), cmap='gray')
+                axs[m, n].set_title(str(label_titles[m]))
+                axs[m,n].axis('off')
+         
+                
         # second column
-        sample = samples[nrow + m, :, 0]
-        axarr[m, 1].imshow(sample.reshape([img_size,img_size]), cmap='gray')
-        axarr[m, 1].set_title(str(label_titles[m + nrow]))
+#         sample = samples[nrow + m, :, 0]
+#         axarr[m, 1].imshow(sample.reshape([img_size,img_size]), cmap='gray')
+#         axarr[m, 1].set_title(str(label_titles[m + nrow]))
     fig.suptitle(idx)
     fig.suptitle(idx)
     fig.subplots_adjust(hspace = 0.15)
