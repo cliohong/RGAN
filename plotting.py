@@ -507,7 +507,7 @@ def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
         
     
     for i in range(16):
-        indexs = np.random.randint(n_samples)
+        indexs = np.random.randint(0,(n_samples))
         plt.subplot(nrow, ncol, i+1)
         sample = samples[indexs, :, 0]
         plt.imshow(sample.reshape([img_size,img_size]), cmap='gray')
