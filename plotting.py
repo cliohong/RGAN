@@ -29,6 +29,7 @@ def visualise_at_epoch(vis_sample, data, predict_labels, one_hot, epoch,
             samps = vis_sample
         if multivariate_mnist:
             save_mnist_plot_sample(samps.reshape(-1, seq_length**2, 1), epoch, identifier, n_samples=16, labels=labs)
+            print("seq:",seq_length)
         else:
             save_mnist_plot_sample(samps, epoch, identifier, n_samples=16, labels=labs)
     elif 'eICU' in data:
@@ -437,6 +438,8 @@ def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
     Generates a grid showing mnist digits.
 
     """
+    print(samples.shape[0])
+        
     assert n_samples <= samples.shape[0]
     if not labels is None:
         assert n_samples <= len(labels)
