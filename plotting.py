@@ -456,14 +456,14 @@ def save_mnist_plot_sample(samples, idx, identifier, n_samples, labels=None):
     nrow = int(n_samples/4)
     ncol = 4
     fig, axs = plt.subplots(nrow, ncol, sharex=True, figsize=(8, 8))
-    indexs = 0
+    indexs = np.random.random_integers(6)
 #     fig, axarr = plt.subplots(nrow, ncol, sharex=True, figsize=(8, 8))
     for m in range(nrow):
         
         for n in range(ncol):
 #                 sample = samples[nrow + m, :, 0]
                 sample = samples[indexs, :, 0]
-                indexs+=1
+                
 #         # first column
 #                 sample = samples[m, :, 0]
                 axs[m, n].imshow(sample.reshape([img_size,img_size]), cmap='gray')
